@@ -65,6 +65,12 @@ textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .saved{font-size:12px;color:var(--muted)}
 .empty{padding:40px 0;color:var(--muted)}
 details.backup{margin-top:40px;font-size:13.5px;color:var(--muted)}
+details.sync{margin-top:6px;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:13.5px}
+details.sync summary{cursor:pointer;font-weight:500}
+details.sync ol{padding-left:20px;margin:6px 0}
+details.sync a{color:var(--accent)}
+details.sync input{flex:1;min-width:0;font:inherit;font-size:13.5px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg)}
+.top .saved{margin-left:8px}
 details.backup summary{cursor:pointer}
 details.backup textarea{min-height:80px;margin-top:8px;font-family:var(--mono);font-size:12px}
 [hidden]{display:none!important}
@@ -72,11 +78,28 @@ details.backup textarea{min-height:80px;margin-top:8px;font-family:var(--mono);f
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><a href="index.html">← 영상으로</a><span class="sp"></span><span class="saved" id="count"></span></div>
+  <div class="top"><a href="index.html">← 영상으로</a><span class="sp"></span><span class="saved" id="syncStatus"></span><span class="saved" id="count"></span></div>
   <header>
     <h1>스크랩한 <em>문장</em></h1>
-    <p class="sub">영상 스크립트에서 ☆를 누른 문장이 여기 모여요. '펼쳐보기'로 해설과 구조를 보고, 나만의 메모를 남길 수 있어요. 스크랩과 메모는 이 기기의 브라우저에 저장돼요.</p>
+    <p class="sub">영상 스크립트에서 ☆를 누른 문장이 여기 모여요. '펼쳐보기'로 해설과 구조를 보고, 나만의 메모를 남길 수 있어요. 아래 '기기 간 동기화'를 켜면 폰과 PC에서 같은 스크랩을 볼 수 있어요.</p>
   </header>
+  <details class="sync" id="syncBox">
+    <summary>☁ 기기 간 동기화 (폰·PC에서 같은 스크랩 보기)</summary>
+    <div id="syOff">
+      <p>GitHub 계정의 <b>비공개 gist</b>에 스크랩과 메모를 저장해서, 이 페이지를 연 모든 기기에서 같은 내용을 보게 해요. 기기마다 한 번씩만 설정하면 돼요.</p>
+      <ol>
+        <li><a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=shadowing-scraps" target="_blank" rel="noopener">GitHub 토큰 만들기</a>를 열어요. (GitHub 로그인 필요)</li>
+        <li>권한은 <b>gist</b>만 체크된 상태로 두고, Expiration(만료)은 원하는 기간으로 고른 뒤 맨 아래 <b>Generate token</b>을 눌러요.</li>
+        <li>나온 토큰(ghp_로 시작)을 복사해서 아래에 붙여넣고 <b>연결</b>을 눌러요. 다른 기기에서도 같은 토큰을 붙여넣으면 돼요.</li>
+      </ol>
+      <div class="row"><input id="syToken" type="password" placeholder="ghp_… 토큰 붙여넣기" autocomplete="off"><button class="btn" id="syConnect">연결</button></div>
+      <p class="saved">토큰은 이 기기 브라우저에만 저장되고, 사이트나 다른 사람에게 전달되지 않아요. gist 말고 다른 권한은 없는 토큰이라 저장소 등은 건드릴 수 없어요.</p>
+    </div>
+    <div id="syOn" hidden>
+      <p>이 기기는 동기화 중이에요. ☆를 누르거나 메모를 고치면 자동으로 저장되고, 페이지를 열 때마다 다른 기기의 변경 사항을 가져와요.</p>
+      <div class="row"><button class="btn" id="syNow">지금 동기화</button><button class="btn del" id="syOffBtn">이 기기 동기화 끄기</button></div>
+    </div>
+  </details>
   <nav class="toc" id="toc"></nav>
   <main id="list"></main>
   <details class="backup">
@@ -87,14 +110,14 @@ details.backup textarea{min-height:80px;margin-top:8px;font-family:var(--mono);f
   </details>
 </div>
 <script src="videos/list.js"></script>
+<script src="sync.js"></script>
 <script>
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const KEY="sh-scraps";
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const markup=en=>esc(en).replace(/\*(.+?)\*/g,"<mark>$1</mark>").replace(/ \/ /g," / ");
 const fmt=s=>{s=Math.floor(s||0);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
-const getAll=()=>{try{return JSON.parse(store.get(KEY))||{}}catch(e){return {}}};
-const saveAll=a=>store.set(KEY,JSON.stringify(a));
+const getAll=()=>Scraps.all();
 const VIDEOS=(window.VIDEOS||[]).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
 const vById=Object.fromEntries(VIDEOS.map(v=>[v.id,v]));
 
@@ -141,7 +164,7 @@ async function openCard(card,btn){
   more.innerHTML=(xp?`<div class="box">${explainHTML(xp)}</div>`:"")+(sx?`<div class="box"><h3>문장 구조</h3>${structHTML(sx)}</div>`:"")+
     `<div><textarea placeholder="이 문장에 대한 내 메모 (예문, 비슷한 표현, 쓰고 싶은 상황…)">${esc(it.memo||"")}</textarea><span class="saved"></span></div>`;
   const ta=more.querySelector("textarea"), st=more.querySelector(".saved:last-child"); let tm;
-  ta.addEventListener("input",()=>{clearTimeout(tm);st.textContent="";tm=setTimeout(()=>{const a=getAll();if(a[card.dataset.k]){a[card.dataset.k].memo=ta.value;saveAll(a);st.textContent="저장됨";
+  ta.addEventListener("input",()=>{clearTimeout(tm);st.textContent="";tm=setTimeout(()=>{const a=getAll();if(a[card.dataset.k]){Scraps.setMemo(card.dataset.k,ta.value);st.textContent=Sync.on()?"저장됨 · 동기화":"저장됨";
     let pre=card.querySelector(".memo-pre"); if(ta.value.trim()){ if(!pre){pre=document.createElement("div");pre.className="memo-pre";card.querySelector(".ko").after(pre);} pre.textContent=ta.value; } else if(pre) pre.remove(); }},500);});
 }
 
@@ -149,14 +172,24 @@ document.addEventListener("click",e=>{
   const b=e.target.closest("[data-act]"); if(!b) return;
   const card=b.closest(".card");
   if(b.dataset.act==="open") openCard(card,b);
-  if(b.dataset.act==="del"&&confirm("이 문장을 스크랩에서 뺄까요? 메모도 함께 지워져요.")){ const a=getAll(); delete a[card.dataset.k]; saveAll(a); render(); }
+  if(b.dataset.act==="del"&&confirm("이 문장을 스크랩에서 뺄까요? 메모도 함께 지워져요.")){ Scraps.remove(card.dataset.k); render(); }
 });
-document.getElementById("bkCopy").onclick=async()=>{const t=JSON.stringify(getAll());const ta=document.getElementById("bkText");ta.value=t;
+document.getElementById("bkCopy").onclick=async()=>{const t=JSON.stringify(Scraps.raw());const ta=document.getElementById("bkText");ta.value=t;
   try{await navigator.clipboard.writeText(t);alert("백업 내용을 복사했어요. 다른 기기의 이 페이지에 붙여넣으세요.");}catch(e){ta.select();alert("아래 칸의 내용을 길게 눌러 복사하세요.");}};
-document.getElementById("bkLoad").onclick=()=>{try{const inc=JSON.parse(document.getElementById("bkText").value);const a=getAll();
-  for(const [k,v] of Object.entries(inc)){ if(!a[k]) a[k]=v; else if(v.memo&&!a[k].memo) a[k].memo=v.memo; }
-  saveAll(a);render();alert("불러왔어요. 이미 있던 문장은 그대로 두고 새 문장만 더했어요.");}catch(e){alert("백업 내용이 올바르지 않아요.");}};
+document.getElementById("bkLoad").onclick=()=>{try{const inc=JSON.parse(document.getElementById("bkText").value);
+  Scraps.merge(inc);Sync.later();render();alert("불러왔어요. 같은 문장은 더 최근에 고친 쪽으로 합쳤어요.");}catch(e){alert("백업 내용이 올바르지 않아요.");}};
 render();
+/* ---------- 기기 간 동기화 (GitHub Gist) ---------- */
+const syEl=document.getElementById("syncStatus"), syBox=document.getElementById("syncBox");
+Sync.onStatus(s=>{ syEl.textContent=s||(Sync.on()?"":"이 기기에만 저장 중"); document.getElementById("count").textContent=Scraps.count()?Scraps.count()+"개":""; });
+function syncUI(){ const on=Sync.on(); document.getElementById("syOff").hidden=on; document.getElementById("syOn").hidden=!on; }
+syncUI();
+const syncNow=()=>Sync.run().then(ch=>{ if(ch) render(); });
+document.getElementById("syConnect").onclick=async()=>{ const t=document.getElementById("syToken").value.trim(); if(!t){alert("토큰을 붙여넣어 주세요.");return;}
+  syncUI(); const ch=await Sync.connect(t); syncUI(); if(Sync.status.startsWith("동기화됨")){ document.getElementById("syToken").value=""; render(); syBox.open=false; } };
+document.getElementById("syNow").onclick=syncNow;
+document.getElementById("syOffBtn").onclick=()=>{ if(confirm("이 기기의 동기화를 끌까요? 스크랩은 이 기기에 그대로 남아요.")){ Sync.disconnect(); syncUI(); } };
+syncNow(); document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") syncNow(); });
 </script>
 </body>
 </html>

@@ -283,6 +283,7 @@ body{margin:0}
 </div>
 
 <script src="videos/list.js"></script>
+<script src="sync.js"></script>
 <script>
 /* ---------- which video ---------- */
 const VIDEOS=(window.VIDEOS||[]).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")); /* 유튜브 업로드일 최신순 */
@@ -304,7 +305,7 @@ const bg=document.getElementById("sheetBg"), vq=document.getElementById("vq"), v
 const CH_ORDER=["주아쌤 소리튠영어","헤일리 쌤","카메론","Call Her Daddy","Hey Tablo"];
 const grpOf=v=>v.grp||v.ch; /* grp: 여러 채널을 버튼 하나로 묶을 때 (예: Vlog) */
 const CH=["전체",...[...new Set(VIDEOS.map(grpOf))].sort((a,b)=>{const i=CH_ORDER.indexOf(a),j=CH_ORDER.indexOf(b);return (i<0?99:i)-(j<0?99:j);})]; let chSel="전체", opener=null;
-function updScrapLink(){ let n=0; try{ n=Object.keys(JSON.parse(store.get("sh-scraps"))||{}).length }catch(e){} document.getElementById("scrapLink").textContent=n?`★ 스크랩 ${n}`:"☆ 스크랩"; }
+function updScrapLink(){ const n=Scraps.count(); document.getElementById("scrapLink").textContent=n?`★ 스크랩 ${n}`:"☆ 스크랩"; }
 updScrapLink();
 function progOf(v){try{return JSON.parse(store.get("sh-prog-"+v.id))}catch(e){return null}}
 function renderList(){
@@ -374,9 +375,7 @@ const XP=new Map(EXPLAIN.map(e=>[e.r,e]));
 const explainHTML=e=>`<div class="xpt">${esc(e.title)}</div>`+e.body.split(/\n/).map(l=>l.trim()).filter(Boolean).map(l=>
   /^\d+\.\s/.test(l)?`<h4 class="xph">${esc(l)}</h4>`:/^\(.*\)$/.test(l)?`<p class="xko">${esc(l.slice(1,-1))}</p>`:/^[A-Za-z]/.test(l)?`<p class="xen">${esc(l)}</p>`:`<p>${esc(l)}</p>`).join("");
 /* 스크랩: 모든 영상 공통 저장소 (이 기기 브라우저에 저장). 키 = 영상id:문장번호 */
-const SCRAP_KEY="sh-scraps";
-const getScraps=()=>{try{return JSON.parse(store.get(SCRAP_KEY))||{}}catch(e){return {}}};
-const isScrapped=n=>!!getScraps()[META.id+":"+n];
+const isScrapped=n=>Scraps.has(META.id+":"+n);
 const structHTML=e=>`<div class="sxt">${e.tree.map(([d,t,n])=>`<div class="sxr" style="--d:${d}"><span class="sxe">${esc(t)}</span>${n?`<span class="sxn${n.startsWith("★")?" key":""}">${esc(n)}</span>`:""}</div>`).join("")}</div>`+
   `<dl class="sxd"><dt>뼈대</dt><dd class="sxc">${esc(e.core)}</dd><dt>길을 잃는 지점</dt><dd>${esc(e.trap)}</dd><dt>영어 순서로 해석</dt><dd>${esc(e.order)}</dd><dt>이 틀로 말해 보기</dt><dd class="sxc">${esc(e.prac)}</dd></dl>`;
 const plain=en=>en.replace(/\*/g,"").replace(/ \/ /g," ");
@@ -404,6 +403,9 @@ chapters.forEach((c,i)=>{
   h+="</section>";
 });
 S.innerHTML=h;
+const refreshStars=()=>{ S.querySelectorAll(".s-scrap").forEach(b=>{const on=isScrapped(+b.dataset.scrap);b.setAttribute("aria-pressed",on);b.textContent=on?"★":"☆";}); updScrapLink(); };
+const syncNow=()=>Sync.run().then(ch=>{ if(ch) refreshStars(); });
+syncNow(); document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") syncNow(); });
 { const m=location.hash.match(/^#s(\d+)$/); if(m){ const el=document.getElementById("s"+m[1]); if(el) setTimeout(()=>{ el.scrollIntoView({block:"center"}); el.classList.add("flash"); },60); } }
 
 /* ---------- notes ---------- */
@@ -563,9 +565,9 @@ document.addEventListener("click",e=>{
   const sxb=e.target.closest(".sx");
   if(sxb){ const p=document.getElementById(sxb.dataset.panel), open=p.hidden; p.hidden=!open; sxb.setAttribute("aria-expanded",open); return; }
   const sc=e.target.closest(".s-scrap");
-  if(sc){ const n=+sc.dataset.scrap, k=META.id+":"+n, all=getScraps();
-    if(all[k]) delete all[k]; else { const ln=lines[n-1]; all[k]={id:META.id,n,en:ln.en,ko:ln.ko,t:TIMES[n-1],at:Date.now(),memo:""}; }
-    store.set(SCRAP_KEY,JSON.stringify(all)); const on=!!all[k]; sc.setAttribute("aria-pressed",on); sc.textContent=on?"★":"☆"; updScrapLink(); return; }
+  if(sc){ const n=+sc.dataset.scrap, k=META.id+":"+n;
+    if(Scraps.has(k)) Scraps.remove(k); else { const ln=lines[n-1]; Scraps.put(k,{id:META.id,n,en:ln.en,ko:ln.ko,t:TIMES[n-1],at:Date.now(),memo:""}); }
+    const on=Scraps.has(k); sc.setAttribute("aria-pressed",on); sc.textContent=on?"★":"☆"; updScrapLink(); return; }
   const tc=e.target.closest(".t");
   if(tc&&ready){ e.preventDefault(); const sec=+tc.dataset.t;
     if(LOOP){ const [a,b]=loopRange(); if(sec<a||sec>=b) setLoop(null); } /* 반복 구간 밖을 누르면 반복 해제 */
