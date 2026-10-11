@@ -62,6 +62,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 
 .toc{display:flex;flex-wrap:wrap;gap:6px;padding-block:14px 4px}
 .toc a{font-size:12.5px;color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:3px 10px;border-radius:999px;background:var(--surface)}
+#notes .toc{position:sticky;top:var(--dock-h,0px);z-index:4;background:var(--bg);padding-block:10px 8px}
 .toc a:hover{color:var(--fg);border-color:var(--muted)}
 
 section.ch{padding-top:30px;scroll-margin-top:70px}
@@ -477,6 +478,9 @@ if(noteCount&&(store.get("sh-tab")??store.get("ht40-tab"))==="notes") show("note
 /* ---------- video ---------- */
 let player=null, ready=false, cur=-1, follow=true;
 const dock=document.getElementById("dock"), fb=document.getElementById("follow");
+/* 노트의 목록 알약이 영상·버튼 영역 바로 아래에 붙어 있도록 그 높이를 CSS에 알려 줌 */
+const setDockH=()=>document.documentElement.style.setProperty("--dock-h",dock.offsetHeight+"px");
+setDockH(); if(window.ResizeObserver) new ResizeObserver(setDockH).observe(dock); else addEventListener("resize",setDockH);
 fb.onclick=()=>{follow=!follow;fb.setAttribute("aria-pressed",follow)};
 /* 이어 보기: 영상별 마지막 재생 위치를 기억했다가 다음에 열면 그 지점에서 시작 */
 const POS_KEY="sh-pos-"+META.id, resumeAt=+(store.get(POS_KEY)||0);
@@ -565,7 +569,7 @@ if(frTg){frTg.onclick=()=>setFr(document.body.classList.contains("no-fr")); if(s
 document.addEventListener("click",e=>{
   const toc=e.target.closest(".toc a");
   if(toc){ e.preventDefault(); const t=document.querySelector(toc.getAttribute("href")); /* 위쪽 영상·버튼 영역에 가리지 않게 그 아래로 */
-    if(t){ const y=t.getBoundingClientRect().top+scrollY-dock.offsetHeight-6; window.scrollTo({top:y,behavior:Math.abs(y-scrollY)>2500?"auto":"smooth"}); } return; } /* 먼 거리는 바로 이동 */
+    if(t){ const st=toc.closest("#notes")?toc.parentElement.offsetHeight:0, y=t.getBoundingClientRect().top+scrollY-dock.offsetHeight-st-6; window.scrollTo({top:y,behavior:Math.abs(y-scrollY)>2500?"auto":"smooth"}); } return; } /* 먼 거리는 바로 이동 */
   const fr=e.target.closest(".fr");
   if(fr&&!document.body.classList.contains("no-fr")){ showTip(fr); return; }
   if(!tipEl.hidden&&!e.target.closest(".fr-tip")) hideTip();
