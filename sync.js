@@ -1,9 +1,9 @@
 /* 스크랩 저장소 + 기기 간 동기화 (index.html, scrap.html 공용)
    - 스크랩은 이 기기 localStorage("sh-scraps")에 저장: { "영상id:문장번호": {id,n,en,ko,t,at,memo,upd} }
    - 지운 스크랩은 {del:true,upd}로 남겨서 다른 기기에서 되살아나지 않게 함
-   - 동기화: 문장 암기장 앱과 같은 Cloudflare Worker(english) KV의 "shadowing-scraps" 키에 저장.
+   - 동기화: 쉐도잉 전용 Cloudflare Worker(shadowing, worker/scraps-worker.js)의 KV에 저장.
      GET /scraps 로 받아 합치고, POST /scraps {items} 로 올리면 서버가 항목별 최신(upd)으로 합쳐서 돌려줌.
-     토큰·로그인 없이 자동. 워커가 *.github.io 주소의 요청만 받음 */
+     토큰·로그인 없이 자동. 워커가 이 사이트 주소의 요청만 받음 */
 (function(){
 const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 const KEY="sh-scraps";
@@ -23,7 +23,7 @@ const Scraps={
   raw
 };
 
-const SERVER="https://english.onewoo90.workers.dev/scraps";
+const SERVER="https://shadowing.onewoo90.workers.dev/scraps";
 const Sync={
   status:"", listeners:[],
   on(){return true},
@@ -34,7 +34,7 @@ const Sync={
     if(this.busy){this.again=true;return false;}
     this.busy=true; this.emit("동기화 중…");
     try{
-      const g=await fetch(SERVER,{cache:"no-store"}); if(!g.ok) throw new Error(g.status===405?"서버 준비 전 (워커 배포 필요)":"서버 응답 "+g.status);
+      const g=await fetch(SERVER,{cache:"no-store"}); if(!g.ok) throw new Error(g.status===405?"서버 준비 전 (shadowing 워커 배포 필요)":"서버 응답 "+g.status);
       let changed=Scraps.merge(await g.json());
       const p=await fetch(SERVER,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:raw()})});
       if(!p.ok) throw new Error("저장 실패 "+p.status);

@@ -162,7 +162,7 @@ document.getElementById("bkCopy").onclick=async()=>{const t=JSON.stringify(Scrap
 document.getElementById("bkLoad").onclick=()=>{try{const inc=JSON.parse(document.getElementById("bkText").value);
   Scraps.merge(inc);Sync.later();render();alert("불러왔어요. 같은 문장은 더 최근에 고친 쪽으로 합쳤어요.");}catch(e){alert("백업 내용이 올바르지 않아요.");}};
 render();
-/* ---------- 기기 간 동기화 (문장 암기장과 같은 Cloudflare 워커) ---------- */
+/* ---------- 기기 간 동기화 (쉐도잉 전용 Cloudflare 워커) ---------- */
 Sync.onStatus(st=>{ document.getElementById("syncLine").textContent=st; document.getElementById("syncStatus").textContent=""; document.getElementById("count").textContent=Scraps.count()?Scraps.count()+"개":""; });
 const syncNow=()=>Sync.run().then(ch=>{ if(ch) render(); });
 document.getElementById("syNow").onclick=syncNow;
