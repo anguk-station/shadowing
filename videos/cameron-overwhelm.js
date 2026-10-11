@@ -426,6 +426,7 @@ const STRUCT = [
   prac:"When you do feel nervous, notice it, and maybe feel it, but just say, \"I'm not going to let this stop me.\""}
 ];
 
+
 /* 해설 노트: 문장에 붙는 자세한 설명. f=문장을 찾을 문구, title=제목, body=본문
    본문 규칙: 빈 줄 = 문단 구분, "1. ~" = 소제목, "(~)"로 감싼 줄 = 바로 위 예문의 해석 */
 const EXPLAIN = [
@@ -469,7 +470,36 @@ I came here just needing a hug.
 (그냥 좀 안아줬으면 해서(위로받고 싶어서) 여기 왔어.)
 
 I sat down just needing a quick break.
-(그냥 잠깐 쉬고 싶어서 주저앉았어.)`}
+(그냥 잠깐 쉬고 싶어서 주저앉았어.)`},
+ {f:"So as far as getting my steps in today",title:"As far as + [명사] / get + [행동] + in",body:`1. "As far as + [명사]" (~에 관해서라면, ~은 말이야)
+원래 형태인 'as far as ~ goes/is concerned'를 끝까지 말하지 않고, 대화할 때 화제를 툭 던지며 전환할 때 아주 자주 쓰는 패턴입니다.
+
+As far as dinner, I'm thinking pizza.
+(저녁 메뉴 말인데, 난 피자 생각 중이야.)
+
+As far as this weekend, I have zero plans.
+(이번 주말에 관해서라면, 난 계획이 아예 없어.)
+
+As far as work, everything is going well.
+(회사 일에 관해서는, 다 잘 돌아가고 있어.)
+
+As far as the meeting, we can cancel it.
+(그 회의 말인데요, 그냥 취소해도 될 것 같아요.)
+
+2. "get + [행동/목표] + in" (바쁜 와중에 짬 내서 ~을 하다)
+시간이 넉넉하지 않은 상황에서도 어떻게든 시간이나 기회를 쪼개어 해냈을 때(또는 하려고 할 때) 씁니다.
+
+I managed to get a quick workout in before work.
+(출근하기 전에 짬 내서 짧게 운동 좀 했어.)
+
+Did you get any studying in today?
+(오늘 바빴을 텐데 공부 좀 하긴 했어?)
+
+I'm trying to get some reading in before bed.
+(자기 전에 짬 내서 책 좀 읽으려고 해.)
+
+We barely got a coffee break in.
+(우리 커피 마실 시간도 겨우 냈어.)`}
 ];
 
 /* 문장별 영상 시작 시간(초) — 자막 타임스탬프 기준, 문장이 자막 중간에서 시작하면 위치로 추정 */
