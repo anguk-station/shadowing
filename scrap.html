@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>스크랩한 문장</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* 스크랩 페이지: 모든 영상에서 ☆ 표시한 문장을 영상별로 모아 복습. 저장은 이 기기 브라우저(localStorage "sh-scraps") */
+:root{
+  --bg:#F3F4F1; --surface:#FFFFFF; --fg:#1C1F23; --muted:#727982; --line:#DDE0DB;
+  --accent:#2C47B0; --marker:#F3D664; --marker-soft:rgba(243,214,100,.55);
+  --serif:"Source Serif 4", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", Georgia, serif;
+  --sans:"Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141619; --surface:#1C1F23; --fg:#E7E8E4; --muted:#8D949C; --line:#2C3036;
+  --accent:#93A8FF; --marker:#B79A2A; --marker-soft:rgba(183,154,42,.45); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141619; --surface:#1C1F23; --fg:#E7E8E4; --muted:#8D949C; --line:#2C3036;
+  --accent:#93A8FF; --marker:#B79A2A; --marker-soft:rgba(183,154,42,.45); color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.6}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 80px}
+.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:8px;padding:12px 0}
+.top a,.btn{font:inherit;font-size:13px;color:var(--fg);text-decoration:none;border:1px solid var(--line);background:var(--surface);padding:5px 12px;border-radius:999px;cursor:pointer;white-space:nowrap}
+.top .sp{flex:1}
+header{padding:22px 0 10px}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(28px,6vw,40px);line-height:1.1;margin:0}
+h1 em{font-style:italic;font-weight:400;background:linear-gradient(transparent 58%,var(--marker-soft) 58%)}
+.sub{color:var(--muted);font-size:14px;margin:8px 0 0}
+.toc{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 4px}
+.toc a{font-size:12.5px;color:var(--muted);text-decoration:none;border:1px solid var(--line);padding:3px 10px;border-radius:999px;background:var(--surface)}
+section{padding-top:26px;scroll-margin-top:64px}
+section h2{font-family:var(--serif);font-size:20px;font-weight:600;margin:0}
+section .ch{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.card{padding:14px 0;border-bottom:1px dashed var(--line);display:grid;gap:4px}
+.en{font-family:var(--serif);font-size:17.5px;line-height:1.45}
+mark{background:linear-gradient(transparent 60%,var(--marker) 60%);color:inherit;padding:0 1px;font-weight:600}
+.ko{font-size:14px;color:var(--muted)}
+.memo-pre{font-size:13.5px;padding:6px 10px;border-left:2px solid var(--accent);background:var(--surface);border-radius:0 6px 6px 0;white-space:pre-wrap}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:6px}
+.row .n{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-right:4px}
+.btn.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.del{color:var(--muted)}
+.more{display:grid;gap:10px;margin-top:8px}
+.box{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:14px;line-height:1.55}
+.box h3{font-size:12px;font-weight:600;color:var(--accent);margin:0 0 6px}
+.xpt{font-family:var(--serif);font-size:16px;font-weight:600;color:var(--accent);margin-bottom:6px}
+.box p{margin:6px 0 0}
+.xph{font-size:14px;font-weight:600;margin:14px 0 2px}
+.xen{font-family:var(--serif);font-size:15px}
+.box p.xen{margin-top:10px}
+.xko{color:var(--muted);font-size:13px;margin-top:1px!important}
+.sxr{padding-left:calc(var(--d)*16px)}
+.sxe{font-family:var(--serif);font-size:15px}
+.sxn{display:block;font-size:12px;color:var(--muted)}
+.sxn.key{color:var(--accent);font-weight:600}
+.sxd dt{font-size:12px;font-weight:600;color:var(--accent);margin-top:9px}.sxd dd{margin:2px 0 0}.sxd{margin:8px 0 0}
+textarea{width:100%;min-height:110px;font:inherit;font-size:14px;line-height:1.55;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--fg);resize:vertical}
+textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.saved{font-size:12px;color:var(--muted)}
+.empty{padding:40px 0;color:var(--muted)}
+details.backup{margin-top:40px;font-size:13.5px;color:var(--muted)}
+details.backup summary{cursor:pointer}
+details.backup textarea{min-height:80px;margin-top:8px;font-family:var(--mono);font-size:12px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="index.html">← 영상으로</a><span class="sp"></span><span class="saved" id="count"></span></div>
+  <header>
+    <h1>스크랩한 <em>문장</em></h1>
+    <p class="sub">영상 스크립트에서 ☆를 누른 문장이 여기 모여요. '펼쳐보기'로 해설과 구조를 보고, 나만의 메모를 남길 수 있어요. 스크랩과 메모는 이 기기의 브라우저에 저장돼요.</p>
+  </header>
+  <nav class="toc" id="toc"></nav>
+  <main id="list"></main>
+  <details class="backup">
+    <summary>백업 · 다른 기기로 옮기기</summary>
+    <p>스크랩은 기기마다 따로 저장돼요. 다른 폰이나 컴퓨터로 옮기려면 아래 '백업 복사'를 눌러 복사한 내용을, 그 기기의 이 페이지에서 붙여넣고 '불러오기'를 누르세요.</p>
+    <div class="row"><button class="btn" id="bkCopy">백업 복사</button><button class="btn" id="bkLoad">불러오기</button></div>
+    <textarea id="bkText" placeholder="여기에 백업 내용을 붙여넣기"></textarea>
+  </details>
+</div>
+<script src="videos/list.js"></script>
+<script>
+const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+const KEY="sh-scraps";
+const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const markup=en=>esc(en).replace(/\*(.+?)\*/g,"<mark>$1</mark>").replace(/ \/ /g," / ");
+const fmt=s=>{s=Math.floor(s||0);return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+const getAll=()=>{try{return JSON.parse(store.get(KEY))||{}}catch(e){return {}}};
+const saveAll=a=>store.set(KEY,JSON.stringify(a));
+const VIDEOS=(window.VIDEOS||[]).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+const vById=Object.fromEntries(VIDEOS.map(v=>[v.id,v]));
+
+/* 영상 데이터 파일(해설·구조)은 펼칠 때 한 번씩만 불러옴. 파일마다 window.VIDEO를 덮어쓰므로 차례로 */
+const dataCache={}; let chain=Promise.resolve();
+function loadData(id){
+  if(dataCache[id]) return dataCache[id];
+  return dataCache[id]=chain=chain.then(()=>new Promise(res=>{const s=document.createElement("script");s.src="videos/"+id+".js";
+    s.onload=()=>{res(window.VIDEO||{});};s.onerror=()=>res({});document.head.appendChild(s);}));
+}
+const explainHTML=e=>`<div class="xpt">${esc(e.title)}</div>`+e.body.split(/\n/).map(l=>l.trim()).filter(Boolean).map(l=>
+  /^\d+\.\s/.test(l)?`<h4 class="xph">${esc(l)}</h4>`:/^\(.*\)$/.test(l)?`<p class="xko">${esc(l.slice(1,-1))}</p>`:/^[A-Za-z]/.test(l)?`<p class="xen">${esc(l)}</p>`:`<p>${esc(l)}</p>`).join("");
+const structHTML=e=>`<div>${e.tree.map(([d,t,n])=>`<div class="sxr" style="--d:${d}"><span class="sxe">${esc(t)}</span>${n?`<span class="sxn${n.startsWith("★")?" key":""}">${esc(n)}</span>`:""}</div>`).join("")}</div>`+
+  `<dl class="sxd"><dt>뼈대</dt><dd>${esc(e.core)}</dd><dt>길을 잃는 지점</dt><dd>${esc(e.trap)}</dd><dt>영어 순서로 해석</dt><dd>${esc(e.order)}</dd><dt>이 틀로 말해 보기</dt><dd>${esc(e.prac)}</dd></dl>`;
+
+function render(){
+  const all=getAll(), items=Object.entries(all).map(([k,v])=>({k,...v}));
+  document.getElementById("count").textContent=items.length?`${items.length}개`:"";
+  const L=document.getElementById("list"), T=document.getElementById("toc");
+  if(!items.length){ T.innerHTML=""; L.innerHTML=`<p class="empty">아직 스크랩한 문장이 없어요. 영상 스크립트에서 문장 아래 ☆를 눌러 보세요.</p>`; return; }
+  const groups={}; items.forEach(it=>(groups[it.id]=groups[it.id]||[]).push(it));
+  const ids=Object.keys(groups).sort((a,b)=>{const ia=VIDEOS.findIndex(v=>v.id===a),ib=VIDEOS.findIndex(v=>v.id===b);return (ia<0?999:ia)-(ib<0?999:ib);});
+  T.innerHTML=ids.length>1?ids.map(id=>`<a href="#g-${id}">${esc((vById[id]&&vById[id].title||id).replace(/\*/g,""))} ${groups[id].length}</a>`).join(""):"";
+  L.innerHTML=ids.map(id=>{const v=vById[id]||{title:id,ch:""};
+    return `<section id="g-${id}"><span class="ch">${esc(v.ch||"")}</span><h2>${esc((v.title||id).replace(/\*/g,""))}</h2>`+
+      groups[id].sort((a,b)=>a.n-b.n).map(it=>`<div class="card" data-k="${esc(it.k)}">
+        <div class="en">${markup(it.en)}</div><div class="ko">${esc(it.ko)}</div>
+        ${it.memo?`<div class="memo-pre">${esc(it.memo)}</div>`:""}
+        <div class="row"><span class="n">#${it.n} · ${fmt(it.t)}</span>
+          <button class="btn" data-act="open">펼쳐보기</button>
+          <a class="btn" href="index.html?v=${encodeURIComponent(id)}#s${it.n}">영상에서 보기</a>
+          <button class="btn del" data-act="del">삭제</button></div>
+        <div class="more" hidden></div></div>`).join("")+`</section>`;}).join("");
+}
+
+async function openCard(card,btn){
+  const more=card.querySelector(".more");
+  if(!more.hidden){ more.hidden=true; btn.classList.remove("on"); btn.textContent="펼쳐보기"; return; }
+  const all=getAll(), it=all[card.dataset.k]; if(!it) return;
+  btn.classList.add("on"); btn.textContent="접기"; more.hidden=false; more.innerHTML=`<p class="saved">불러오는 중…</p>`;
+  const D=await loadData(it.id);
+  const find=list=>(list||[]).find(e=>e.r===it.n);
+  const xp=find(D.EXPLAIN), sx=find(D.STRUCT);
+  more.innerHTML=(xp?`<div class="box">${explainHTML(xp)}</div>`:"")+(sx?`<div class="box"><h3>문장 구조</h3>${structHTML(sx)}</div>`:"")+
+    `<div><textarea placeholder="이 문장에 대한 내 메모 (예문, 비슷한 표현, 쓰고 싶은 상황…)">${esc(it.memo||"")}</textarea><span class="saved"></span></div>`;
+  const ta=more.querySelector("textarea"), st=more.querySelector(".saved:last-child"); let tm;
+  ta.addEventListener("input",()=>{clearTimeout(tm);st.textContent="";tm=setTimeout(()=>{const a=getAll();if(a[card.dataset.k]){a[card.dataset.k].memo=ta.value;saveAll(a);st.textContent="저장됨";
+    let pre=card.querySelector(".memo-pre"); if(ta.value.trim()){ if(!pre){pre=document.createElement("div");pre.className="memo-pre";card.querySelector(".ko").after(pre);} pre.textContent=ta.value; } else if(pre) pre.remove(); }},500);});
+}
+
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-act]"); if(!b) return;
+  const card=b.closest(".card");
+  if(b.dataset.act==="open") openCard(card,b);
+  if(b.dataset.act==="del"&&confirm("이 문장을 스크랩에서 뺄까요? 메모도 함께 지워져요.")){ const a=getAll(); delete a[card.dataset.k]; saveAll(a); render(); }
+});
+document.getElementById("bkCopy").onclick=async()=>{const t=JSON.stringify(getAll());const ta=document.getElementById("bkText");ta.value=t;
+  try{await navigator.clipboard.writeText(t);alert("백업 내용을 복사했어요. 다른 기기의 이 페이지에 붙여넣으세요.");}catch(e){ta.select();alert("아래 칸의 내용을 길게 눌러 복사하세요.");}};
+document.getElementById("bkLoad").onclick=()=>{try{const inc=JSON.parse(document.getElementById("bkText").value);const a=getAll();
+  for(const [k,v] of Object.entries(inc)){ if(!a[k]) a[k]=v; else if(v.memo&&!a[k].memo) a[k].memo=v.memo; }
+  saveAll(a);render();alert("불러왔어요. 이미 있던 문장은 그대로 두고 새 문장만 더했어요.");}catch(e){alert("백업 내용이 올바르지 않아요.");}};
+render();
+</script>
+</body>
+</html>
