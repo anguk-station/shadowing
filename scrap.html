@@ -65,11 +65,8 @@ textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .saved{font-size:12px;color:var(--muted)}
 .empty{padding:40px 0;color:var(--muted)}
 details.backup{margin-top:40px;font-size:13.5px;color:var(--muted)}
-details.sync{margin-top:6px;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:13.5px}
-details.sync summary{cursor:pointer;font-weight:500}
-details.sync ol{padding-left:20px;margin:6px 0}
-details.sync a{color:var(--accent)}
-details.sync input{flex:1;min-width:0;font:inherit;font-size:13.5px;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--fg)}
+.sync{margin-top:6px;padding:10px 14px;background:var(--surface);border:1px solid var(--line);border-radius:10px;font-size:13.5px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.sync #syncLine{flex:1;min-width:140px}
 .top .saved{margin-left:8px}
 details.backup summary{cursor:pointer}
 details.backup textarea{min-height:80px;margin-top:8px;font-family:var(--mono);font-size:12px}
@@ -81,30 +78,16 @@ details.backup textarea{min-height:80px;margin-top:8px;font-family:var(--mono);f
   <div class="top"><a href="index.html">← 영상으로</a><span class="sp"></span><span class="saved" id="syncStatus"></span><span class="saved" id="count"></span></div>
   <header>
     <h1>스크랩한 <em>문장</em></h1>
-    <p class="sub">영상 스크립트에서 ☆를 누른 문장이 여기 모여요. '펼쳐보기'로 해설과 구조를 보고, 나만의 메모를 남길 수 있어요. 아래 '기기 간 동기화'를 켜면 폰과 PC에서 같은 스크랩을 볼 수 있어요.</p>
+    <p class="sub">영상 스크립트에서 ☆를 누른 문장이 여기 모여요. '펼쳐보기'로 해설과 구조를 보고, 나만의 메모를 남길 수 있어요. 스크랩과 메모는 자동으로 동기화돼서 폰과 PC에서 똑같이 보여요.</p>
   </header>
-  <details class="sync" id="syncBox">
-    <summary>☁ 기기 간 동기화 (폰·PC에서 같은 스크랩 보기)</summary>
-    <div id="syOff">
-      <p>GitHub 계정의 <b>비공개 gist</b>에 스크랩과 메모를 저장해서, 이 페이지를 연 모든 기기에서 같은 내용을 보게 해요. 기기마다 한 번씩만 설정하면 돼요.</p>
-      <ol>
-        <li><a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=shadowing-scraps" target="_blank" rel="noopener">GitHub 토큰 만들기</a>를 열어요. (GitHub 로그인 필요)</li>
-        <li>권한은 <b>gist</b>만 체크된 상태로 두고, Expiration(만료)은 원하는 기간으로 고른 뒤 맨 아래 <b>Generate token</b>을 눌러요.</li>
-        <li>나온 토큰(ghp_로 시작)을 복사해서 아래에 붙여넣고 <b>연결</b>을 눌러요. 다른 기기에서도 같은 토큰을 붙여넣으면 돼요.</li>
-      </ol>
-      <div class="row"><input id="syToken" type="password" placeholder="ghp_… 토큰 붙여넣기" autocomplete="off"><button class="btn" id="syConnect">연결</button></div>
-      <p class="saved">토큰은 이 기기 브라우저에만 저장되고, 사이트나 다른 사람에게 전달되지 않아요. gist 말고 다른 권한은 없는 토큰이라 저장소 등은 건드릴 수 없어요.</p>
-    </div>
-    <div id="syOn" hidden>
-      <p>이 기기는 동기화 중이에요. ☆를 누르거나 메모를 고치면 자동으로 저장되고, 페이지를 열 때마다 다른 기기의 변경 사항을 가져와요.</p>
-      <div class="row"><button class="btn" id="syNow">지금 동기화</button><button class="btn del" id="syOffBtn">이 기기 동기화 끄기</button></div>
-    </div>
-  </details>
+  <div class="sync">
+    <span>☁ 폰·PC 자동 동기화</span><span class="saved" id="syncLine"></span><button class="btn" id="syNow">지금 동기화</button>
+  </div>
   <nav class="toc" id="toc"></nav>
   <main id="list"></main>
   <details class="backup">
-    <summary>백업 · 다른 기기로 옮기기</summary>
-    <p>스크랩은 기기마다 따로 저장돼요. 다른 폰이나 컴퓨터로 옮기려면 아래 '백업 복사'를 눌러 복사한 내용을, 그 기기의 이 페이지에서 붙여넣고 '불러오기'를 누르세요.</p>
+    <summary>백업 (따로 보관하기)</summary>
+    <p>평소엔 자동 동기화로 충분해요. 만약을 위해 따로 보관하고 싶다면 '백업 복사'로 복사해 메모장 등에 저장해 두세요. 나중에 아래 칸에 붙여넣고 '불러오기'를 누르면 되살릴 수 있어요.</p>
     <div class="row"><button class="btn" id="bkCopy">백업 복사</button><button class="btn" id="bkLoad">불러오기</button></div>
     <textarea id="bkText" placeholder="여기에 백업 내용을 붙여넣기"></textarea>
   </details>
@@ -179,16 +162,10 @@ document.getElementById("bkCopy").onclick=async()=>{const t=JSON.stringify(Scrap
 document.getElementById("bkLoad").onclick=()=>{try{const inc=JSON.parse(document.getElementById("bkText").value);
   Scraps.merge(inc);Sync.later();render();alert("불러왔어요. 같은 문장은 더 최근에 고친 쪽으로 합쳤어요.");}catch(e){alert("백업 내용이 올바르지 않아요.");}};
 render();
-/* ---------- 기기 간 동기화 (GitHub Gist) ---------- */
-const syEl=document.getElementById("syncStatus"), syBox=document.getElementById("syncBox");
-Sync.onStatus(s=>{ syEl.textContent=s||(Sync.on()?"":"이 기기에만 저장 중"); document.getElementById("count").textContent=Scraps.count()?Scraps.count()+"개":""; });
-function syncUI(){ const on=Sync.on(); document.getElementById("syOff").hidden=on; document.getElementById("syOn").hidden=!on; }
-syncUI();
+/* ---------- 기기 간 동기화 (문장 암기장과 같은 Cloudflare 워커) ---------- */
+Sync.onStatus(st=>{ document.getElementById("syncLine").textContent=st; document.getElementById("syncStatus").textContent=""; document.getElementById("count").textContent=Scraps.count()?Scraps.count()+"개":""; });
 const syncNow=()=>Sync.run().then(ch=>{ if(ch) render(); });
-document.getElementById("syConnect").onclick=async()=>{ const t=document.getElementById("syToken").value.trim(); if(!t){alert("토큰을 붙여넣어 주세요.");return;}
-  syncUI(); const ch=await Sync.connect(t); syncUI(); if(Sync.status.startsWith("동기화됨")){ document.getElementById("syToken").value=""; render(); syBox.open=false; } };
 document.getElementById("syNow").onclick=syncNow;
-document.getElementById("syOffBtn").onclick=()=>{ if(confirm("이 기기의 동기화를 끌까요? 스크랩은 이 기기에 그대로 남아요.")){ Sync.disconnect(); syncUI(); } };
 syncNow(); document.addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") syncNow(); });
 </script>
 </body>
