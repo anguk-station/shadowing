@@ -275,7 +275,8 @@ const META=VIDEOS.find(v=>v.id===qv)||VIDEOS.find(v=>v.id===store.get("sh-last")
 const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const unstar=s=>s.replace(/\*/g,"");
 store.set("sh-last",META.id);
-if(qv!==META.id) history.replaceState(null,"","?v="+META.id+location.hash);
+/* 주소창엔 ?v=를 남기지 않음 → 홈 화면 아이콘·북마크로 열면 늘 마지막에 본 영상(sh-last)이 뜸 */
+if(qv) history.replaceState(null,"",location.pathname+location.hash);
 document.title=`${META.ch} ${META.ep} 영어 노트`;
 document.getElementById("h1").innerHTML=esc(META.title).replace(/\*(.+?)\*/g,"<em>$1</em>");
 document.getElementById("desc").textContent=META.desc||"";
@@ -437,10 +438,18 @@ if(noteCount&&(store.get("sh-tab")??store.get("ht40-tab"))==="notes") show("note
 let player=null, ready=false, cur=-1, follow=true;
 const dock=document.getElementById("dock"), fb=document.getElementById("follow");
 fb.onclick=()=>{follow=!follow;fb.setAttribute("aria-pressed",follow)};
+/* 이어 보기: 영상별 마지막 재생 위치를 기억했다가 다음에 열면 그 지점에서 시작 */
+const POS_KEY="sh-pos-"+META.id, resumeAt=+(store.get(POS_KEY)||0);
+let lastSaved=resumeAt;
 window.onYouTubeIframeAPIReady=()=>{
-  player=new YT.Player("yt",{videoId:VID,playerVars:{playsinline:1,rel:0,modestbranding:1},
-    events:{onStateChange:e=>{ if(e.data===0&&LOOP){ player.seekTo(loopRange()[0],true); player.playVideo(); } },
-      onReady:()=>{ready=true;dock.classList.add("has-player");document.body.classList.add("yt-ready");}}});
+  player=new YT.Player("yt",{videoId:VID,playerVars:{playsinline:1,rel:0,modestbranding:1,start:resumeAt>5?Math.floor(resumeAt):0},
+    events:{onStateChange:e=>{
+        if(e.data===0&&LOOP){ player.seekTo(loopRange()[0],true); player.playVideo(); return; }
+        if(e.data===0) store.set(POS_KEY,"0"); /* 끝까지 봤으면 다음엔 처음부터 */
+        if(e.data===2) store.set(POS_KEY,String(Math.floor(player.getCurrentTime()))); /* 일시정지할 때도 저장 */
+      },
+      onReady:()=>{ready=true;dock.classList.add("has-player");document.body.classList.add("yt-ready");
+        if(resumeAt>5){ let i=-1; for(const [s,k] of CUES){ if(s<=resumeAt+0.3) i=k; else break; } if(i>=0) markNow(i); } }}});
 };
 (function(){
   const s=document.createElement("script");
@@ -462,6 +471,7 @@ function markNow(i){
 setInterval(()=>{
   if(!ready||!player.getPlayerState||player.getPlayerState()!==1) return;
   const t=player.getCurrentTime()+0.3; let i=-1;
+  if(Math.abs(t-lastSaved)>=3){ lastSaved=t; store.set(POS_KEY,String(Math.floor(t))); } /* 재생 위치 저장 */
   if(LOOP){ const [a,b]=loopRange(); if(t-0.3>=b){ player.seekTo(a,true); return; } }
   for(const [s,k] of CUES){ if(s<=t) i=k; else break; }
   if(LOOP&&LOOP.kind==="s") i=LOOP.idx; /* 문장 반복 중엔 그 문장만 하이라이트 */
