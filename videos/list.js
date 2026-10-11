@@ -1,6 +1,9 @@
 /* 영상 목록 — 새 영상은 맨 위에 추가. 데이터는 videos/<id>.js
    id: 파일 이름 · yt: YouTube 영상 ID · date: 유튜브 업로드일(이 순서로 정렬, 최신이 위) · title: *별표*로 감싼 부분은 제목에서 강조 */
 window.VIDEOS=[
+  {id:"cameron-overwhelm", ch:"Cameron Word", grp:"카메론", loop:true, ep:"벅찬 일상 정리하기", tag:"#힐링브이로그", yt:"L1-dvt3ITiY", date:"2026-10-10", len:"32:05",
+   title:"Sorting Out the *Overwhelm*",
+   desc:"벅찬 일상을 정리해 보는 카메론의 한 주: 한강 달리기, 미용실과 연남동 실 가게, 액자와 테라스 정리, 성수 카다멈 번, 그리고 '나는 내 마음이 아니다'라는 말에서 얻은 생각."},
   {id:"cameron-rainyday", ch:"Cameron Word", grp:"카메론", loop:true, ep:"서울에 혼자 사는 외국인", tag:"#혼자살기", yt:"fV3tOktRbLc", date:"2026-09-05", len:"23:13",
    title:"Alone but Not *Lonely*",
    desc:"비 오는 날 빌린 카메라를 들고 한강과 성수 카페를 다니며, 한국에서 혼자 사는 게 외롭지 않냐는 질문에 답해요. 강의 촬영 날 일상과 자주 연락하지 않아도 가까운 관계 이야기까지 담았어요."},
