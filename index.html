@@ -47,14 +47,14 @@ h1 em{font-style:italic;font-weight:400;background:linear-gradient(transparent 5
 .follow[aria-pressed="true"]{color:var(--fg)}
 .follow[aria-pressed="true"] .dot{background:var(--accent);border-color:var(--accent)}
 .follow .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted)}
-.ctrls{display:flex;gap:6px;flex-wrap:wrap}
+.ctrls{display:flex;gap:6px;flex-wrap:nowrap;flex:none}
 .bar{
-  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;
+  display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;gap:8px;
   padding-block:12px}
 .tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px}
 .tab{font:inherit;font-size:13.5px;font-weight:500;border:0;background:transparent;color:var(--muted);padding:7px 15px;border-radius:999px;cursor:pointer}
 .tab[aria-selected="true"]{background:var(--fg);color:var(--bg)}
-.toggle{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 13px;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:7px}
+.toggle{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--surface);color:var(--fg);padding:7px 11px;white-space:nowrap;border-radius:999px;cursor:pointer;display:flex;align-items:center;gap:7px}
 .toggle .dot{width:9px;height:9px;border-radius:50%;border:1.5px solid var(--muted)}
 .toggle[hidden]{display:none}
 .toggle[aria-pressed="true"] .dot{background:var(--accent);border-color:var(--accent)}
@@ -81,13 +81,10 @@ body.yt-ready .ch-loop{display:inline-flex}
 
 .line{display:grid;grid-template-columns:38px 1fr;gap:0 10px;padding-block:11px;border-bottom:1px dashed var(--line);scroll-margin-top:80px}
 .line.flash,.ex.flash,.w.flash{animation:flash 1.6s ease-out}
-.s-note{font:inherit;font-size:11.5px;font-weight:500;height:22px;padding:0 9px;border:1px solid var(--marker,#e9c84a);border-radius:999px;background:var(--marker-soft);color:var(--fg);cursor:pointer}
-.s-note:hover{border-color:var(--fg)}
+.sx.s-note{border-color:var(--marker);color:var(--fg);background:var(--marker-soft)}
 @keyframes flash{0%{background:var(--marker-soft)}100%{background:transparent}}
 .n{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-top:5px;border:0;background:none;cursor:pointer;text-align:left;font-variant-numeric:tabular-nums}
 .n:hover{color:var(--accent)}
-.n::after{content:" ▸";opacity:0}
-.n:hover::after{opacity:1}
 .en{font-family:var(--serif);font-size:17.5px;line-height:1.55;min-width:0}
 .ko{grid-column:2;font-size:14px;color:var(--muted);margin-top:3px;transition:filter .2s;min-width:0}
 mark{background:linear-gradient(transparent 60%,var(--marker) 60%);color:inherit;padding:0 1px;font-weight:600}
@@ -192,6 +189,9 @@ footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)
 .pick:hover{border-color:var(--muted)}
 .pick svg{flex:none}
 @media (max-width:600px){.pick{padding:0}.pick-l{display:none}}
+/* 좁은 화면(태블릿·작은 창): 오른쪽 토글은 짧은 이름으로 해서 한 줄 유지 */
+.tab,.pick{white-space:nowrap}
+@media (max-width:780px){.ctrls .lg{display:none}.ctrls .sm{display:inline}}
 /* phones: keep the whole control bar on one row with short labels */
 .sm{display:none}
 @media (max-width:600px){
@@ -260,8 +260,8 @@ body{margin:0}
         <a class="pick scrap-btn" id="scrapLink" href="scrap.html" title="스크랩한 문장" aria-label="스크랩한 문장">☆</a>
       </div>
       <div class="ctrls">
-        <button class="follow" id="follow" aria-pressed="true" title="자막 따라가기"><span class="dot"></span><span class="lg">자막 따라가기</span><span class="sm">따라</span></button>
-        <button class="toggle" id="toggleKo" aria-pressed="false" title="한국어 가리기"><span class="dot"></span><span class="lg">한국어 가리기</span><span class="sm">한글</span></button>
+        <button class="follow" id="follow" aria-pressed="true" title="자막 따라가기"><span class="dot"></span><span class="lg">따라가기</span><span class="sm">따라</span></button>
+        <button class="toggle" id="toggleKo" aria-pressed="false" title="한국어 가리기"><span class="dot"></span><span class="lg">한글 가리기</span><span class="sm">한글</span></button>
         <button class="toggle" id="toggleFl" aria-pressed="false" title="군말 흐리게" hidden><span class="dot"></span><span class="lg">군말 흐리게</span><span class="sm">군말</span></button>
       </div>
     </div>
@@ -399,15 +399,15 @@ chapters.forEach((c,i)=>{
     const chip=(sec,label)=>`<a class="t" data-t="${sec}" data-i="${it.n-1}" href="https://youtu.be/${VID}?t=${Math.floor(sec)}" target="_blank" rel="noopener" aria-label="${fmt(sec)}부터 영상 재생">▶ ${label?label+" ":""}${fmt(sec)}</a>`;
     const sLoop=`<button class="s-loop" data-sloop="${it.n-1}" aria-pressed="false" aria-label="${it.n}번 문장 반복" title="이 문장만 반복">${LOOP_SVG}</button>`;
     const scr=isScrapped(it.n), sBtn=`<button class="s-scrap" data-scrap="${it.n}" aria-pressed="${scr}" aria-label="${it.n}번 문장 스크랩" title="스크랩">${scr?"★":"☆"}</button>`;
-    const nBtn=NOTE_R.has(it.n)?`<button class="s-note" data-tonote="${it.n}" title="학습 노트의 이 표현으로">노트 →</button>`:"";
-    const chips=`<div class="ts">${TIMES2?chip(TIMES[it.n-1],"1회차")+chip(TIMES2[it.n-1],"2회차"):chip(TIMES[it.n-1])}${sLoop}${sBtn}${nBtn}</div>`;
+    const nBtn=NOTE_R.has(it.n)?`<button class="sx s-note" data-tonote="${it.n}" title="학습 노트의 이 표현으로">노트</button>`:"";
+    const chips=`<div class="ts">${TIMES2?chip(TIMES[it.n-1],"1회차")+chip(TIMES2[it.n-1],"2회차"):chip(TIMES[it.n-1])}${sLoop}${sBtn}</div>`;
     const tip=(it.tip?`<div class="tip">${esc(it.tip)}</div>`:"")+(it.sit?`<div class="sit"><b>꺼내 말하기</b>${esc(it.sit)}</div>`:"");
     const dlg=it.ex?`<div class="dlg">${it.ex.map(d=>`<div class="dl"><button class="who" data-tts="${esc(plain(d.en))}" aria-label="${esc(d.who)} 대사 듣기">${esc(d.who)}</button><div class="den">${markup(d.en)}</div><div class="dko">${esc(d.ko)}</div></div>`).join("")}</div>`:"";
     const sx=SX.get(it.n), sxBtn=sx?`<button class="sx" data-panel="sxp${it.n}" aria-expanded="false" aria-controls="sxp${it.n}" title="문장 구조 해설">구조</button>`:"";
     const xp=XP.get(it.n), xpBtn=xp?`<button class="sx" data-panel="xpp${it.n}" aria-expanded="false" aria-controls="xpp${it.n}" title="표현 해설">해설</button>`:"";
     const xpPanel=xp?`<div class="sxp sxb xpb" id="xpp${it.n}" hidden>${explainHTML(xp)}</div>`:"";
     const sxPanel=sx?`<div class="sxp sxb" id="sxp${it.n}" hidden>${structHTML(sx)}</div>`:"";
-    h+=`<div class="line${sx?" has-sx":""}" id="s${it.n}"><button class="n" data-say="${it.n}" aria-label="${it.n}번 문장 듣기">${it.n}</button>${sx||xp?`<div class="side">${sxBtn}${xpBtn}</div>`:""}<div class="en">${markup(it.en)}</div><div class="ko">${esc(it.ko)}</div>${tip}${dlg}${chips}${sxPanel}${xpPanel}</div>`;
+    h+=`<div class="line${sx?" has-sx":""}" id="s${it.n}"><button class="n" data-say="${it.n}" aria-label="${it.n}번 문장 듣기">${it.n}</button>${sx||xp||nBtn?`<div class="side">${sxBtn}${xpBtn}${nBtn}</div>`:""}<div class="en">${markup(it.en)}</div><div class="ko">${esc(it.ko)}</div>${tip}${dlg}${chips}${sxPanel}${xpPanel}</div>`;
   });
   h+="</section>";
 });
@@ -574,7 +574,7 @@ document.addEventListener("click",e=>{
   const fr=e.target.closest(".fr");
   if(fr&&!document.body.classList.contains("no-fr")){ showTip(fr); return; }
   if(!tipEl.hidden&&!e.target.closest(".fr-tip")) hideTip();
-  const sxb=e.target.closest(".sx");
+  const sxb=e.target.closest(".sx[data-panel]");
   if(sxb){ const p=document.getElementById(sxb.dataset.panel), open=p.hidden; p.hidden=!open; sxb.setAttribute("aria-expanded",open); return; }
   const sc=e.target.closest(".s-scrap");
   if(sc){ const n=+sc.dataset.scrap, k=META.id+":"+n;
