@@ -152,8 +152,6 @@ body.no-fr .fr{border-bottom:0;cursor:auto}
 .s-scrap:hover{border-color:var(--accent)}
 .s-scrap[aria-pressed="true"]{color:#e0a800;border-color:#e0a800}
 .sheet-head{gap:8px}.sheet-head h2{margin-right:auto}
-.tab.ico{font-size:16px;line-height:1;width:40px;padding:7px 0;text-align:center;font-family:var(--sans);filter:grayscale(1);opacity:.55}
-.tab.ico[aria-selected="true"]{filter:none;opacity:1;background:var(--line)}
 .scrap-btn{text-decoration:none;font-size:15px;padding:0 11px;gap:3px}
 .scrap-btn b{font-size:12px;font-weight:600;color:var(--muted)}
 /* 군말 흐리게: um, uh, like, you know, kind of 등 뉘앙스용 말을 연하게 */
@@ -196,22 +194,20 @@ footer{margin-top:40px;font-size:12px;color:var(--muted);font-family:var(--mono)
 .sm{display:none}
 @media (max-width:600px){
   .lg{display:none}.sm{display:inline}
-  .bar{flex-wrap:nowrap;gap:6px;padding-block:8px}
+  .bar{flex-wrap:nowrap;gap:4px;padding-block:8px}
   .bar-l{gap:4px;min-width:0}
   .ctrls{flex-wrap:nowrap;gap:4px;flex:none}
   .pick{height:32px;min-width:32px}
-  .tabs{padding:2px;gap:2px}
-  .tab{font-size:12.5px;padding:5px 10px}
-  .tab.ico{font-size:15px;width:34px;padding:5px 0}
-  .scrap-btn{padding:0 9px}
-  .toggle,.follow{font-size:12px;padding:5px 9px;gap:5px;white-space:nowrap}
+  .tabs{padding:2px;gap:2px;flex:none}
+  .tab{font-size:12.5px;padding:5px 7px}
+  .scrap-btn{padding:0 7px;flex:none}
+  .toggle,.follow{font-size:12px;padding:5px 6px;gap:3px;white-space:nowrap}
   .toggle .dot,.follow .dot{width:7px;height:7px}
   .tab{white-space:nowrap}
 }
 @media (max-width:370px){
   .bar{gap:4px}
   .tab{font-size:12px;padding:5px 8px}
-  .tab.ico{width:30px;padding:5px 0}
   .toggle,.follow{font-size:11.5px;padding:5px 7px;gap:4px}
 }
 .sheet-bg{position:fixed;inset:0;z-index:20;background:rgba(10,12,16,.42);display:flex;align-items:flex-end;justify-content:center}
@@ -256,8 +252,8 @@ body{margin:0}
           <span class="pick-l" id="pickL">영상 목록</span>
         </button>
         <div class="tabs" role="tablist">
-          <button class="tab ico" role="tab" id="tab-script" aria-selected="true" title="전체 스크립트" aria-label="전체 스크립트">📜</button>
-          <button class="tab ico" role="tab" id="tab-notes" aria-selected="false" title="학습 노트" aria-label="학습 노트">📝</button>
+          <button class="tab" role="tab" id="tab-script" aria-selected="true"><span class="lg">전체 스크립트</span><span class="sm">스크립트</span></button>
+          <button class="tab" role="tab" id="tab-notes" aria-selected="false"><span class="lg">학습 노트</span><span class="sm">노트</span></button>
         </div>
         <a class="pick scrap-btn" id="scrapLink" href="scrap.html" title="스크랩한 문장" aria-label="스크랩한 문장">☆</a>
       </div>
