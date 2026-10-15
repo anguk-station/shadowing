@@ -1,9 +1,12 @@
 /* 영상 목록 — 새 영상은 맨 위에 추가. 데이터는 videos/<id>.js
    id: 파일 이름 · yt: YouTube 영상 ID · date: 유튜브 업로드일(이 순서로 정렬, 최신이 위) · title: *별표*로 감싼 부분은 제목에서 강조 */
 window.VIDEOS=[
-  {id:"cameron-overwhelm", ch:"Cameron Word", grp:"카메론", loop:true, ep:"벅찬 일상 정리하기", tag:"#힐링브이로그", yt:"L1-dvt3ITiY", date:"2026-10-10", len:"32:05",
+  {id:"soritune-linking30", ch:"주아쌤 소리튠영어", ep:"연음·축약 리스닝 30", tag:"#발음", yt:"TqmWYCrNcKg", date:"2026-10-15", len:"45:12",
+   title:"Linking Sounds *30*",
+   desc:"외계어처럼 들리던 연음·축약 30개를 소리튠 교안대로 정리했어요. 문장 속 하이라이트가 소리블록이고, 아래에 실제로 들리는 한국어 소리와 이어지는 이유를 적었어요. 영상은 30문장을 두 번 돌려서 1회차만 표시했어요."},
+  {id:"cameron-overwhelm", ch:"Cameron Word", grp:"카메론", loop:true, ep:"버거운 일상 정리하기", tag:"#힐링브이로그", yt:"L1-dvt3ITiY", date:"2026-10-10", len:"32:05",
    title:"Sorting Out the *Overwhelm*",
-   desc:"벅찬 일상을 정리해 보는 카메론의 한 주: 한강 달리기, 미용실과 연남동 실 가게, 액자와 테라스 정리, 성수 카다멈 번, 그리고 '나는 내 마음이 아니다'라는 말에서 얻은 생각."},
+   desc:"버거운 일상을 정리해 보는 카메론의 한 주: 한강 달리기, 미용실과 연남동 실 가게, 액자와 테라스 정리, 성수 카다멈 번, 그리고 '나는 내 마음이 아니다'라는 말에서 얻은 생각."},
   {id:"cameron-rainyday", ch:"Cameron Word", grp:"카메론", loop:true, ep:"서울에 혼자 사는 외국인", tag:"#혼자살기", yt:"fV3tOktRbLc", date:"2026-09-05", len:"23:13",
    title:"Alone but Not *Lonely*",
    desc:"비 오는 날 빌린 카메라를 들고 한강과 성수 카페를 다니며, 한국에서 혼자 사는 게 외롭지 않냐는 질문에 답해요. 강의 촬영 날 일상과 자주 연락하지 않아도 가까운 관계 이야기까지 담았어요."},

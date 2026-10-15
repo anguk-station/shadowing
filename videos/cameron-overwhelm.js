@@ -1,4 +1,4 @@
-/* Cameron Word 카메론 워드 — [힐링 영어 VLOG] 벅찬 일상, 이렇게 정리해 봤어요
+/* Cameron Word 카메론 워드 — [힐링 영어 VLOG] 버거운 일상, 이렇게 정리해 봤어요
    자막을 문장 단위로 다듬음. 음악만 나오는 구간과 알아듣기 힘든 짧은 대화는 뺐어요. */
 window.VIDEO=(function(){
 const RAW = `
@@ -11,8 +11,8 @@ Have you ever felt like that? || 그런 기분 느껴 보신 적 있어요?
 I just needed to find a place that was a little more open. There weren't a ton of buildings or mountains in the way. || 좀 더 탁 트인 곳을 찾고 싶었어요. 건물이나 산이 시야를 막지 않는 곳이요.
 And about the only place close to my house that that type of thing exists is here at the Han River, which is a little under five kilometers away. || 집 근처에 그런 곳은 여기 한강 정도인데, 5km가 조금 안 돼요.
 So, it's definitely *runnable*. || 그래서 충분히 뛰어올 만해요.
-So, I came here to kind of *de-stress* a little bit, because I've been dealing with some *overwhelm* in my life. || 그래서 스트레스를 좀 풀려고 여기 왔어요. 요즘 벅찬 기분을 겪고 있거든요.
-And it's not overwhelm with work. || 일 때문에 벅찬 건 아니에요.
+So, I came here to kind of *de-stress* a little bit, because I've been dealing with some *overwhelm* in my life. || 그래서 스트레스를 좀 풀려고 여기 왔어요. 요즘 버거운 기분을 겪고 있거든요.
+And it's not overwhelm with work. || 일 때문에 버거운 건 아니에요.
 It's more with optional things that I want to do, hobbies and stuff like that, goals I have in life, or, like, self-improvement that aren't really *anchored towards* my career or my family or my loved ones. || 오히려 하고 싶어서 하는 것들, 취미 같은 거나 인생 목표, 자기계발처럼 커리어나 가족, 사랑하는 사람들과 직접 관련 없는 것들 때문이에요.
 But I think this week I'm going to be thinking a lot about that. || 그래서 이번 주엔 그걸 많이 생각해 볼 것 같아요.
 Are there things that I can maybe remove from my life or simplify as fall comes in, as autumn arrives and we start preparing for winter? || 가을이 오고 겨울을 준비하기 시작하면서, 삶에서 덜어내거나 단순하게 만들 수 있는 게 있을까요?
@@ -65,7 +65,7 @@ Okay, Simba, you want to help me? You going to help me in this scene? || 자, �
 We got to *give the people what they want*, and they want to see more of you and less of me. || 사람들이 원하는 걸 줘야지. 다들 나보다 너를 더 보고 싶어 해.
 Okay, so we're back home, and I had a snack. It was some leftovers. || 자, 집에 돌아왔고 간식을 먹었어요. 남은 음식이었어요.
 But today has been something of a *whirlwind*, ironically. || 그런데 아이러니하게도 오늘은 정신없이 바쁜 하루였어요.
-Because I started out the day talking about overwhelm, and then it was a lot of things going on. || 벅찬 기분 얘기로 하루를 시작했는데, 그 뒤로 일이 정말 많았거든요.
+Because I started out the day talking about overwhelm, and then it was a lot of things going on. || 버거운 기분 얘기로 하루를 시작했는데, 그 뒤로 일이 정말 많았거든요.
 There are things that you have seen and you haven't seen. || 여러분이 본 것도 있고 못 본 것도 있어요.
 So after my run, I took Simba for a walk, and then I had about a 2-hour talk with my sister. || 달리기를 마치고 심바를 산책시킨 다음, 누나랑 2시간쯤 얘기했어요.
 Uh, we FaceTime about once a month, so we had a lot to *catch up on*. || 한 달에 한 번쯤 영상 통화를 해서, 밀린 얘기가 많았어요.
@@ -75,7 +75,7 @@ So I have a mountain of dishes waiting for me to do, which is always nice to com
 Like, don't you just love... you've had several things happen in your day, and then you come home and you realize, "Oh, I have tons of laundry to fold. Oh, I have dishes to wash." || 하루에 이것저것 일이 있었는데 집에 와서 "아, 갤 빨래가 산더미네. 아, 설거지도 해야 하네" 하고 깨닫는 거, 정말 좋지 않나요?
 Like, I would just love to come home to a clean, organized house. || 깨끗하고 정돈된 집에 돌아오고 싶어요.
 But because the me of the past didn't do everything I needed to do, the me of the now and the me of the future have to deal with that. || 하지만 과거의 내가 해야 할 일을 다 안 해서, 지금의 나와 미래의 내가 그걸 감당해야 해요.
-And who knows, maybe that's a great example of why I'm feeling some overwhelm. || 어쩌면 그게 제가 벅찬 이유를 잘 보여 주는 예일지도 몰라요.
+And who knows, maybe that's a great example of why I'm feeling some overwhelm. || 어쩌면 그게 제가 버거운 이유를 잘 보여 주는 예일지도 몰라요.
 Because present Cameron doesn't think enough about future Cameron and what he's going to have to deal with. || 지금의 카메론이 미래의 카메론과 그가 감당해야 할 일을 충분히 생각하지 않으니까요.
 I'm a huge believer that your surroundings are a *direct reflection of* the state of your mind. || 저는 주변 환경이 마음 상태를 그대로 보여 준다고 굳게 믿어요.
 So if your house is disorganized, or your office space, your work area is disorganized, that's often a reflection of the fact that your mind is disorganized. || 그래서 집이나 사무실, 일하는 공간이 어수선하면, 그건 마음이 어수선하다는 걸 보여 주는 경우가 많아요.
@@ -86,7 +86,7 @@ Is my house trying to tell me something? || 우리 집이 나한테 뭔가 말�
 Because tomorrow I'm going to have to do some things over on my terrace. || 내일은 테라스에서 할 일이 좀 있거든요.
 And I know I have not taken care of my terrace well. I've not *tended to* my garden, and it definitely shows. || 테라스를 잘 돌보지 않았다는 거 알아요. 정원을 안 가꿨는데, 확실히 티가 나요.
 And there are things in my house that I could do that I have not done, and it definitely shows. || 집에도 할 수 있는데 안 한 일들이 있고, 그것도 확실히 티가 나요.
-And so kind of *assessing* what the problem is and what the solution is maybe will help a little bit with my overwhelm. || 그래서 문제가 뭐고 해결책이 뭔지 따져 보면 벅찬 기분이 좀 나아질지도 몰라요.
+And so kind of *assessing* what the problem is and what the solution is maybe will help a little bit with my overwhelm. || 그래서 문제가 뭐고 해결책이 뭔지 따져 보면 버거운 기분이 좀 나아질지도 몰라요.
 Anyway, I'm going to try and find some *inner peace* right now and *get on* those dishes, and then get on dinner, and then take care of Simba. || 아무튼 지금은 마음의 평화를 찾아서 설거지부터 하고, 저녁 준비하고, 심바를 챙길게요.
 So that's going to be my evening. || 그게 오늘 저녁이에요.
 And I can't be knitting all night. That's another thing I can't be tempted by. || 그리고 밤새 뜨개질하면 안 돼요. 그것도 넘어가면 안 되는 유혹이에요.
@@ -165,7 +165,7 @@ This was a good place, though. If I'm ever back in this area, I am definitely co
 Hello. I had to change spots, because there's an electric outlet over here, and I needed it for my phone and my computer. || 안녕하세요. 자리를 옮겨야 했어요. 이쪽에 콘센트가 있는데 휴대폰이랑 컴퓨터 충전이 필요했거든요.
 But I'm taking a short break to do some knitting. || 그런데 잠깐 쉬면서 뜨개질을 하고 있어요.
 As you can see, I'm still working on that Oslo hat. || 보시다시피 아직 그 오슬로 모자를 뜨고 있어요.
-So, I realized that I haven't really been talking about the topic of this video, which is overwhelm. || 그러고 보니 이 영상의 주제인 '벅참'에 대해 별로 얘기를 안 했더라고요.
+So, I realized that I haven't really been talking about the topic of this video, which is overwhelm. || 그러고 보니 이 영상의 주제인 '버거움'에 대해 별로 얘기를 안 했더라고요.
 And it is something that I've still been thinking about all week long. || 그리고 그건 이번 주 내내 계속 생각하고 있는 거예요.
 I actually recently listened to a podcast. || 최근에 팟캐스트를 하나 들었어요.
 I don't know which one, cuz it was one of those things where the video just *popped up* on autoplay. || 어떤 건지는 모르겠어요. 자동 재생으로 그냥 뜬 영상이었거든요.
@@ -183,8 +183,8 @@ I don't know. Just thinking of it that way makes me kind of reconsider some thin
 Because I can feel sad in my mind, but that doesn't mean that my identity is sad. || 마음으로 슬플 수는 있지만, 그게 내 정체성이 슬프다는 뜻은 아니니까요.
 Or I can feel happy in my mind, but that doesn't mean my identity is happy. || 마음으로 행복할 수는 있지만, 그게 내 정체성이 행복하다는 뜻도 아니고요.
 Like, I exist outside of that *paradigm*, above it or outside of it, I don't know, on a different *realm*. || 저는 그 틀 바깥에, 그 위에, 모르겠지만 다른 차원에 존재하는 거예요.
-But that also means that if I'm feeling overwhelmed in some way, it's not something that *defines* me. || 그건 제가 어떤 식으로 벅차더라도, 그게 저를 규정하는 건 아니라는 뜻이기도 해요.
-And I can choose to *give in to* that overwhelm, or acknowledge it, still experience it, but realize that I am outside of that, and it's not objective truth. || 그리고 그 벅참에 굴복할 수도 있고, 아니면 인정하고 여전히 느끼되, 내가 그 바깥에 있고 그게 객관적인 진실이 아니라는 걸 깨달을 수도 있어요.
+But that also means that if I'm feeling overwhelmed in some way, it's not something that *defines* me. || 그건 제가 어떤 식으로 버겁더라도, 그게 저를 규정하는 건 아니라는 뜻이기도 해요.
+And I can choose to *give in to* that overwhelm, or acknowledge it, still experience it, but realize that I am outside of that, and it's not objective truth. || 그리고 그 버거움에 굴복할 수도 있고, 아니면 인정하고 여전히 느끼되, 내가 그 바깥에 있고 그게 객관적인 진실이 아니라는 걸 깨달을 수도 있어요.
 And that has really *thrown me for a loop*. || 그게 저를 정말 혼란스럽게 했어요.
 You realize that you're a slave to your body at times, like what your body can physically do and not do. || 가끔은 내 몸의 노예라는 걸 깨닫잖아요. 몸이 할 수 있는 것과 없는 것에요.
 But then also realizing you're a slave to your mind, and what your mind can conceive and comprehend and understand, and how your existence is beyond that. || 그런데 내 마음의 노예이기도 하다는 걸, 마음이 떠올리고 이해할 수 있는 것에 묶여 있다는 걸, 그리고 내 존재가 그걸 넘어선다는 걸 깨닫는 거예요.
@@ -192,12 +192,12 @@ It's like being able to look into a black hole for the first time and see some r
 You know, just casual Wednesday afternoon thoughts at a cafe in Seongsu while you're knitting. || 뭐, 수요일 오후 성수 카페에서 뜨개질하며 하는 가벼운 생각이죠.
 I think I'm gonna get some coffee and then get back to work on the computer. || 커피 좀 마시고 다시 컴퓨터로 일할게요.
 Okay, I finished my coffee, and I think I need to *expound* a little bit on what I was talking about. || 자, 커피를 다 마셨는데, 아까 한 얘기를 좀 더 풀어 설명해야 할 것 같아요.
-And it's that I think with overwhelm, there are parts of it that can be solved. || 벅참에는 해결할 수 있는 부분이 있다는 거예요.
+And it's that I think with overwhelm, there are parts of it that can be solved. || 버거움에는 해결할 수 있는 부분이 있다는 거예요.
 I can *take on* fewer commitments. I can simplify my life. || 할 일을 덜 맡을 수 있고, 삶을 단순하게 만들 수 있어요.
 I can clean up my house. I can clean up my terrace, so that I have fewer responsibilities and things to look after. || 집을 치우고 테라스를 정리해서 신경 써야 할 일과 책임을 줄일 수 있어요.
 I can also look into different activities that relax me. || 저를 편하게 해 주는 활동을 찾아볼 수도 있고요.
 So, knitting or going for a walk or spending time with my dog. Those are things that can help with the feeling. || 뜨개질이나 산책, 강아지와 시간 보내기 같은 거요. 그런 게 그 기분에 도움이 될 수 있어요.
-But the thing that stuck with me is that I can still feel that overwhelm, even after I've tried to solve it and get rid of it. || 그런데 마음에 남은 건, 해결하고 없애려고 애쓴 뒤에도 여전히 벅찰 수 있다는 거예요.
+But the thing that stuck with me is that I can still feel that overwhelm, even after I've tried to solve it and get rid of it. || 그런데 마음에 남은 건, 해결하고 없애려고 애쓴 뒤에도 여전히 버거울 수 있다는 거예요.
 And that I shouldn't feel guilty about feeling it. || 그리고 그렇게 느끼는 걸 죄책감 가질 필요는 없다는 거고요.
 I don't know about y'all, but sometimes when I feel stressed about something that I know I shouldn't feel stressed about, that makes me feel more stressed. || 여러분은 어떨지 모르겠지만, 저는 스트레스받지 말아야 할 일로 스트레스를 받으면 더 스트레스를 받아요.
 Because I feel like I am somehow failing morally. Like, I'm too immature. I should be okay with this. This shouldn't bother me. || 왠지 도덕적으로 실패한 것 같거든요. 내가 너무 미성숙한가, 이 정도는 괜찮아야 하는데, 이게 신경 쓰이면 안 되는데 하고요.
@@ -208,11 +208,11 @@ And it's, "How would I feel about this thing if it happened to me 100 times?" ||
 In the sense of, you have a *hardship*, and it happens to you the first time, and you're shocked, and you hate it, and it's awful. || 그러니까 어려운 일이 처음 일어나면 충격받고 싫고 끔찍하잖아요.
 But if it happens to you again and again and again, by the hundredth time, it's not going to shock you, and you're just going to think it's normal. || 그런데 계속, 계속 일어나서 백 번째가 되면 더는 충격받지 않고 그냥 평범하다고 생각할 거예요.
 And you will have either found a way to *get over* it or found a way to ignore it. || 그리고 그걸 극복하는 방법이든 무시하는 방법이든 찾았을 거예요.
-Did I start this week with overwhelm? Yes. || 이번 주를 벅찬 기분으로 시작했냐고요? 네.
-Do I still feel overwhelm? Yeah, I do. I think it has *abated* a little bit. || 아직도 벅차냐고요? 네, 그래요. 그래도 조금은 누그러진 것 같아요.
+Did I start this week with overwhelm? Yes. || 이번 주를 버거운 기분으로 시작했냐고요? 네.
+Do I still feel overwhelm? Yeah, I do. I think it has *abated* a little bit. || 아직도 버겁냐고요? 네, 그래요. 그래도 조금은 누그러진 것 같아요.
 And that might just be the fact that I'm getting used to it, or that I'm ignoring it. || 그건 그냥 제가 익숙해지고 있거나 무시하고 있어서일 수도 있어요.
 I'm still busy. There's still things in my life that are causing a little bit of stress. || 여전히 바빠요. 삶에 스트레스를 주는 것들도 아직 있고요.
-But the overwhelm I was feeling was definitely inside my mind. || 하지만 제가 느낀 벅참은 분명히 제 마음속에 있었어요.
+But the overwhelm I was feeling was definitely inside my mind. || 하지만 제가 느낀 버거움은 분명히 제 마음속에 있었어요.
 It wasn't an objective fact that I had so many things to do that I couldn't handle it. || 감당 못 할 만큼 할 일이 많다는 게 객관적인 사실은 아니었어요.
 We shall see. It is still only Wednesday. || 두고 봐야죠. 아직 수요일밖에 안 됐어요.
 Who knows what could happen by Friday and into the weekend. || 금요일이나 주말까지 무슨 일이 생길지 누가 알겠어요.
@@ -242,13 +242,13 @@ Good morning. It is Thursday morning, a little bit before 8:00 a.m. || 좋은 �
 And I'm going to have to go to Ellie High and film some lectures today with my co-teacher in a little bit. || 조금 있다가 엘리하이에 가서 동료 선생님과 강의를 찍어야 해요.
 Before that, I'm gonna have to take Simba for his morning walk. || 그 전에 심바 아침 산책을 시켜야 하고요.
 But I think I am going to end the vlog here. || 그런데 브이로그는 여기서 마칠까 해요.
-*In the spirit of* not getting overwhelmed, I have decided I'm going to finish filming a little early, so that I can have more time to edit and not be overwhelmed by that process. || 벅차지 않으려는 취지에서, 촬영을 좀 일찍 끝내기로 했어요. 그래야 편집할 시간이 더 생기고 그 과정에서 벅차지 않을 테니까요.
+*In the spirit of* not getting overwhelmed, I have decided I'm going to finish filming a little early, so that I can have more time to edit and not be overwhelmed by that process. || 버거워지지 않으려는 취지에서, 촬영을 좀 일찍 끝내기로 했어요. 그래야 편집할 시간이 더 생기고 그 과정에서 버겁지 않을 테니까요.
 And that may be the lesson of this vlog. || 그게 이 브이로그의 교훈일지도 몰라요.
-You know, stress happens. Overwhelm happens. It can't be avoided all the time. || 스트레스는 생기고, 벅찬 순간도 와요. 늘 피할 수는 없어요.
+You know, stress happens. Overwhelm happens. It can't be avoided all the time. || 스트레스는 생기고, 버거운 순간도 와요. 늘 피할 수는 없어요.
 But you can still do your best to prevent it when possible. || 그래도 가능할 땐 최선을 다해 막을 수 있어요.
-And then *inevitably*, when you do feel overwhelmed, acknowledge it, and maybe physically feel overwhelmed, but mentally just say, "All right, I'm not going to let this affect me." || 그리고 결국 벅찬 순간이 오면, 그걸 인정하고, 몸은 벅차더라도 마음으로는 "좋아, 이게 나한테 영향을 주게 두지 않을 거야"라고 말하는 거예요.
+And then *inevitably*, when you do feel overwhelmed, acknowledge it, and maybe physically feel overwhelmed, but mentally just say, "All right, I'm not going to let this affect me." || 그리고 결국 버거운 순간이 오면, 그걸 인정하고, 몸은 버겁더라도 마음으로는 "좋아, 이게 나한테 영향을 주게 두지 않을 거야"라고 말하는 거예요.
 *Easier said than done*, right? || 말이야 쉽죠?
-Anyway, I hope that you find some time where you are not overwhelmed, that you can escape from the stresses of life and really enjoy some of the smaller, slower moments. || 아무튼 여러분도 벅차지 않은 시간을 찾아서, 삶의 스트레스에서 벗어나 작고 느린 순간들을 제대로 즐기시길 바라요.
+Anyway, I hope that you find some time where you are not overwhelmed, that you can escape from the stresses of life and really enjoy some of the smaller, slower moments. || 아무튼 여러분도 버겁지 않은 시간을 찾아서, 삶의 스트레스에서 벗어나 작고 느린 순간들을 제대로 즐기시길 바라요.
 It is getting quite cold lately. I had to put on a jacket before I went out to my terrace with Simba this morning. || 요즘 꽤 추워지고 있어요. 오늘 아침 심바랑 테라스에 나가기 전에 재킷을 입어야 했어요.
 So, I hope that you are enjoying this nice, cool fall weather, and that you're making the preparations you need to before it gets really cold this winter. || 여러분도 선선한 가을 날씨를 즐기시고, 이번 겨울 정말 추워지기 전에 필요한 준비를 하시길 바라요.
 All right, I'll see you in the next video. Bye. || 좋아요, 다음 영상에서 봐요. 안녕.
@@ -306,7 +306,7 @@ const ADJ = [
 
 /* 생활·마음 어휘 */
 const VOCAB = [
- {w:"overwhelm",pos:"n",k:"벅참, 압도되는 느낌",f:"dealing with some *overwhelm*"},{w:"barbershop",pos:"n",k:"(남성) 미용실",f:"on my way to the barbershop"},
+ {w:"overwhelm",pos:"n",k:"버거움, 압도되는 느낌",f:"dealing with some *overwhelm*"},{w:"barbershop",pos:"n",k:"(남성) 미용실",f:"on my way to the barbershop"},
  {w:"replicate",pos:"v",k:"똑같이 재현하다",f:"replicate"},{w:"meal prep",pos:"n",k:"밀프렙",f:"meal prep"},
  {w:"card stock",pos:"n",k:"두꺼운 종이, 판지",f:"white *card stock*"},{w:"picture framer",pos:"n",k:"액자 가게",f:"picture framer"},
  {w:"greasiness",pos:"n",k:"느끼함, 기름기",f:"greasiness"},{w:"paradigm",pos:"n",k:"틀, 사고방식",f:"paradigm"},
@@ -359,7 +359,7 @@ const STRUCT = [
   trap:"that that이 연달아 나와요. 첫 번째 that은 관계사(~하는), 두 번째 that은 '그런'이에요. 원래는 where that type of thing exists가 자연스러운데 말할 땐 이렇게도 해요.",
   order:"거의 유일한 곳은 / 집 근처에서 / 그런 게 있는 / 여기 한강이에요 / 5km가 조금 안 되는",
   prac:"About the only place near my office that is quiet at lunch is the library."},
- {f:"It's more with optional things that I want to do, hobbies and stuff like that",tree:[[0,"It's more with optional things","★ (벅찬 건) 오히려 ~ 때문이에요"],[1,"that I want to do,",""],[1,"hobbies and stuff like that,","예시 ①"],[1,"goals I have in life,","예시 ②"],[1,"or, like, self-improvement","예시 ③"],[2,"that aren't really anchored towards my career or my family or my loved ones.","③ 전체를 꾸밈"]],
+ {f:"It's more with optional things that I want to do, hobbies and stuff like that",tree:[[0,"It's more with optional things","★ (버거운 건) 오히려 ~ 때문이에요"],[1,"that I want to do,",""],[1,"hobbies and stuff like that,","예시 ①"],[1,"goals I have in life,","예시 ②"],[1,"or, like, self-improvement","예시 ③"],[2,"that aren't really anchored towards my career or my family or my loved ones.","③ 전체를 꾸밈"]],
   core:"It's more with optional things I want to do.",
   trap:"It's more with ~ 는 앞 문장(it's not overwhelm with work)과 짝이에요: '일 때문이 아니라 오히려 ~ 때문'. 뒤에 예시가 쭉 나열되고, 마지막 that절은 그 예시들 전체를 꾸며요.",
   order:"오히려 하고 싶어서 하는 것들 때문이에요 / 취미 같은 거 / 인생 목표 / 자기계발 같은 거 / 커리어나 가족과 직접 관련 없는",
@@ -402,12 +402,12 @@ const STRUCT = [
  {f:"And I can choose to give in to that overwhelm, or acknowledge it",tree:[[0,"And I can choose","★"],[1,"to give in to that overwhelm,","선택지 ①"],[1,"or acknowledge it, still experience it,","선택지 ②"],[2,"but realize","②의 이어짐"],[3,"that I am outside of that,",""],[3,"and it's not objective truth.",""]],
   core:"I can choose to give in, or acknowledge it but realize I'm outside of it.",
   trap:"choose to 뒤에 동사가 줄줄이 이어져요: give in to / acknowledge / experience / realize. or를 기준으로 '굴복하거나' vs '인정하고 느끼되 깨닫거나' 두 선택지로 나눠 들으세요.",
-  order:"선택할 수 있어요 / 그 벅참에 굴복할지 / 아니면 인정하고 그대로 느끼되 / 깨달을지 / 내가 그 바깥에 있고 / 그게 객관적인 진실이 아니라는 걸",
+  order:"선택할 수 있어요 / 그 버거움에 굴복할지 / 아니면 인정하고 그대로 느끼되 / 깨달을지 / 내가 그 바깥에 있고 / 그게 객관적인 진실이 아니라는 걸",
   prac:"I can choose to give up, or admit it's hard, keep going, but remember why I started."},
  {f:"But the thing that stuck with me is that I can still feel that overwhelm",tree:[[0,"But the thing","주어 시작"],[1,"that stuck with me","thing을 꾸밈"],[0,"is that","★ 동사"],[1,"I can still feel that overwhelm,",""],[1,"even after I've tried to solve it and get rid of it.",""]],
   core:"The thing that stuck with me is that I can still feel overwhelmed.",
   trap:"The thing (that) ~ is that ~ 틀이에요. 주어가 길고 is that 뒤가 핵심 내용이에요. stick with = 마음에 남다.",
-  order:"그런데 마음에 남은 건 / ~라는 거예요 / 여전히 벅찰 수 있다는 / 해결하고 없애려고 애쓴 뒤에도",
+  order:"그런데 마음에 남은 건 / ~라는 거예요 / 여전히 버거울 수 있다는 / 해결하고 없애려고 애쓴 뒤에도",
   prac:"The thing that surprised me is that I still felt nervous, even after I practiced a lot."},
  {f:"I don't know about y'all, but sometimes when I feel stressed about something",tree:[[0,"I don't know about y'all, but","말 틀"],[0,"sometimes when I feel stressed about something","때"],[1,"that I know I shouldn't feel stressed about,","something을 꾸밈 (I know 끼어듦, about으로 끝남)"],[0,"that makes me feel more stressed.","★ 주절 (that = 그 상황)"]],
   core:"That makes me feel more stressed.",
@@ -422,7 +422,7 @@ const STRUCT = [
  {f:"And then inevitably, when you do feel overwhelmed, acknowledge it",tree:[[0,"And then inevitably,","결국"],[1,"when you do feel overwhelmed,","때 (do = 강조)"],[0,"acknowledge it,","★ 명령 ①"],[0,"and maybe physically feel overwhelmed,","②"],[1,"but mentally just say,","③"],[2,"\"All right, I'm not going to let this affect me.\"","let A 동사원형 = A가 ~하게 두다"]],
   core:"When you feel overwhelmed, acknowledge it and don't let it affect you.",
   trap:"주어 없이 동사(acknowledge, feel, say)로 시작하는 명령문이 이어져요. when you do feel의 do는 강조(정말 ~할 때). let this affect me = 이게 나한테 영향을 주게 두다.",
-  order:"그리고 결국 / 정말 벅찰 때 / 그걸 인정하고 / 몸은 벅차더라도 / 마음으론 이렇게 말하세요 / 좋아, 이게 나한테 영향을 주게 두지 않을 거야",
+  order:"그리고 결국 / 정말 버거울 때 / 그걸 인정하고 / 몸은 버겁더라도 / 마음으론 이렇게 말하세요 / 좋아, 이게 나한테 영향을 주게 두지 않을 거야",
   prac:"When you do feel nervous, notice it, and maybe feel it, but just say, \"I'm not going to let this stop me.\""}
 ];
 
